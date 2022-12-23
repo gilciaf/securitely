@@ -19,5 +19,22 @@
 *.tar.gz
 *.rar
 
+#Eclipse files
+ 56 **/.project
+ 57 **/.classpath
+ 58 **/.factorypath
+ 59 **/.settings/
+ 60 blog/bin/
+ 61 **/.tern-project
+
+#IntelliJ files
+ 64 **/*.iml
+ 65 **/.idea
+ 66 **/.gradle
+ 67 HELP.md
+ 68 mvnw.cmd
+
+#target
+target/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
