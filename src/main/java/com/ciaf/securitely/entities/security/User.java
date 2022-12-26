@@ -16,6 +16,7 @@ public class User {
     private Integer id;
     private String username;
     private String password;
+
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "user_authority",

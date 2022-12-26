@@ -13,17 +13,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         PasswordEncoderFactories SfgPasswordEncoderFactories = null;
         return SfgPasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-
     @Override
     protected void configure(HttpSecurity  http) throws Exception {
         http
                 .authorizeRequests(authorize -> {
                     authorize
-                            .antMatchers("/**").permitAll();
+                            .antMatchers("/persons").permitAll();
                 })
                 .authorizeRequests()
                 .anyRequest().authenticated()
