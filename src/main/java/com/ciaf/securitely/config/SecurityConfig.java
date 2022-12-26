@@ -29,6 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable();
 
         //h2 console config
-        http.headers().frameOptions().sameOrigin();
+//        http.headers().frameOptions().sameOrigin();
     }
 }
