@@ -20,9 +20,9 @@ public class PersonsServices {
         return repository.findAll();
     }
 
-    public Optional<Persons> findById(Long id) {
+    public Persons findById(Long id) {
         Optional<Persons> person = repository.findById(id);
-        return Optional.of(person.orElseThrow(() -> new ResourceNotFoundException(id)));
+        return person.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Persons findByName(String name) {
