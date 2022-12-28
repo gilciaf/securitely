@@ -5,11 +5,13 @@ import com.ciaf.securitely.exceptions.ResourceNotFoundException;
 import com.ciaf.securitely.repositories.geral.PersonsRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class PersonsServices {
     @Autowired
     private PersonsRepositories repository;
@@ -18,14 +20,14 @@ public class PersonsServices {
         return repository.findAll();
     }
 
-    public Persons findById(Long id) {
+    public Optional<Persons> findById(Long id) {
         Optional<Persons> person = repository.findById(id);
-        return person.orElseThrow(() -> new ResourceNotFoundException(id));
+        return Optional.of(person.orElseThrow(() -> new ResourceNotFoundException(id)));
     }
 
     public Persons findByName(String name) {
         Optional<Persons> person = repository.findByNameNative(name);
-        return person.orElseThrow();
+        return person.orElseThrow(() -> new ResourceNotFoundException(name));
     }
 
     public Persons findByCpfOrCnpj(String cpf_cnpj) {

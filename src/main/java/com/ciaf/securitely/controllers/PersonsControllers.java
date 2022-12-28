@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping({ "/persons" })
@@ -26,8 +27,8 @@ public class PersonsControllers {
     @CrossOrigin
     @GetMapping(path = {"/{id}"})
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        Persons list = services.findById(id);
-        return ResponseEntity.ok().body(list);
+        Optional<Persons> person = services.findById(id);
+        return ResponseEntity.ok().body(person);
     }
 
     @CrossOrigin

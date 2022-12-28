@@ -11,7 +11,7 @@ public class ResourceNotFoundException extends RuntimeException {
         super("Resource Not Found with id  = " + id);
     }
 
-    public ResourceNotFoundException(String id) {
-        super();
+    public ResourceNotFoundException(String name) {
+        super("Resource Not Found with Name  = " + name);
     }
 }
