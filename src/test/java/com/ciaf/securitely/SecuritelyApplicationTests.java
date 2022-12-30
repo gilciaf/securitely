@@ -26,6 +26,8 @@ class SecuritelyApplicationTests {
 	@Autowired
 	PersonsRepositories repositories;
 
+	private boolean deleted = false;
+
 	@BeforeEach
 	 void addData(){
 		person = new Persons(
@@ -45,17 +47,18 @@ class SecuritelyApplicationTests {
 		assertEquals(person, confirmed);
 	}
 
-//	@Test
-//	void deletePersons(){
-//		Optional<Persons> person = Optional.ofNullable(services.findByName("Jovam"));
-//		if (person.isPresent()){
-//			services.delete(person.get().getId());
-//		}
-//	}
+	@Test
+	void deletePersons(){
+		Optional<Persons> person = Optional.ofNullable(services.findByName("Jovam"));
+		if (person.isPresent()){
+			services.delete(person.get().getId());
+			deleted = true;
+		}
+	}
 	@AfterEach
 	void deleteData(){
 		Long id = person.getId();
-		if(id != null){
+		if(id != null && !deleted){
 			services.delete(id);
 		}
 	}

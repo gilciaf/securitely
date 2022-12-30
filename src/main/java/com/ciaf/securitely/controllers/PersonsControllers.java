@@ -4,6 +4,8 @@ import com.ciaf.securitely.entities.geral.Persons;
 import com.ciaf.securitely.services.PersonsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -18,6 +20,7 @@ public class PersonsControllers {
 
     @CrossOrigin
     @GetMapping
+    @Secured({"ROLE_ADMIN"})
     public ResponseEntity<List<Persons>> findAll() {
         List<Persons> list = services.findAll();
         return ResponseEntity.ok().body(list);
@@ -43,7 +46,7 @@ public class PersonsControllers {
         Persons list = services.findByCpfOrCnpj(cpf_cnpj);
         return ResponseEntity.ok().body(list);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @CrossOrigin
     @PostMapping
     public ResponseEntity<Persons> create(@RequestBody Persons person) {
