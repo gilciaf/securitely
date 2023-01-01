@@ -20,7 +20,8 @@ public class PersonsControllers {
 
     @CrossOrigin
     @GetMapping
-    @Secured({"ROLE_ADMIN"})
+//    @Secured({"ROLE_ADMIN"})
+    @PreAuthorize("hasAnyAuthority('person.read')")
     public ResponseEntity<List<Persons>> findAll() {
         List<Persons> list = services.findAll();
         return ResponseEntity.ok().body(list);

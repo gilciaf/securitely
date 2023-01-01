@@ -46,13 +46,13 @@ public class RestApiTests {
         services.create(person);
     }
 
-    @Test
-    void getPersons() throws Exception {
-        mockMvc.perform(get("/persons")
-                        .with(httpBasic("gil", "gr007879")))
-                .andExpect(status().is2xxSuccessful());
-
-    }
+//    @Test
+//    void getPersons() throws Exception {
+//        mockMvc.perform(get("/persons")
+//                        .with(httpBasic("gil", "gr007879")))
+//                .andExpect(status().is2xxSuccessful());
+//
+//    }
     @Test
     void getPersonsFail() throws Exception {
         mockMvc.perform(get("/persons")

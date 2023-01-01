@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -29,7 +31,14 @@ public class User {
 //    @JoinTable(name = "user_authority",
 //            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
 //            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+    @Transient
     private Set<Authority> authorities;
+    public Set<Authority> getAuthorities() {
+        return this.roles.stream()
+                .map(Role::getAuthorities)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
+    }
     @Builder.Default
     private Boolean accountNonExpired = true;
     @Builder.Default
